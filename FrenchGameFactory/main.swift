@@ -5,7 +5,6 @@
 //  Created by Laurent Debeaujon on 04/02/2020.
 //  Copyright © 2020 Laurent Debeaujon. All rights reserved.
 //
-
 import Foundation
 
 //*****************************************************************
@@ -29,6 +28,7 @@ class Game {
     func defineWhoStart() -> Player {
         let randomPlayer = Int.random(in:1...2)
         if randomPlayer == 1 {
+            print("\nLe sort a décidé  \(playerTurn) de jouer  ***************")
             return self.player1
         }
         return player2
@@ -37,11 +37,22 @@ class Game {
     
      //************ function attack()  *******************
         
-    func attack() {
-        
+    func attack(player: Player) {
+        print("\n*********** c'est au tour de \(playerTurn) de jouer  ***************")
+        print("\nChoisissez votre champion ! parmis l'équipe suivante :")
+        nbOfTurn += 1
+        for teams in player.listOfCharacters {
+            //\(teams.index(forkey: teams.fighterSelected))
+            print("\n\(teams.fighterSelected) dispose de \(teams.currentLifePoints) points de vie !")
+           }
     }
-    
-}
+    /*  func DisplayTeam() {
+          print("\nTon equipe est constituée de \(listOfCharacters.count)")
+          for teams in listOfCharacters {
+              print("\n\(teams.fighterSelected) dispose de \(teams.currentLifePoints) points de vie !")
+          }
+      */
+      }
 
 //****************************************************************
 //***  Class Player
@@ -64,13 +75,13 @@ class Player: Teams {
     
     //********* function requestPlayerName  **************
      
-     func requestPlayerName(defaultName: String) ->Player {
+     func requestPlayerName(defaultName: String) ->String {
          print ("\n \(defaultName) : Saisisez votre nom (\(defaultName)): " )
          if let playerName = readLine()  {
-              return Player(name: playerName)
+              return  playerName
          }
          else {
-              return Player(name: defaultName)
+              return defaultName
              }
      }
      
@@ -122,14 +133,12 @@ class Characters {
     
     // [String:Int] => name : Point of life
     init() {
-        if let fighterFound = fighter.randomElement() {
-            self.fighterSelected = fighterFound.key
-            self.maxLifePoints = fighterFound.value
-            
-        
+        let fighterFound = fighter.randomElement()
+        self.fighterSelected = fighterFound!.key
+        self.maxLifePoints = fighterFound!.value
         self.currentLifePoints = maxLifePoints
         self.weaponUsed = Weapons()
-        }
+        
     }
     /*func selectCharacter() -> fighter {
         if let myFighter = fighter.randomElement(){
@@ -145,15 +154,10 @@ class Weapons {
     let name: String
     let damage: Int
     let listOfWeapons: [String:Int] =  ["Sabre":10,"Hache":8,"Couteau":3,"Baton":1,"Epée":8,"Masse":5,"Arc":12,"Katana":11,"Machette":8,"Dague":3,"Poignard":3,"Fléau":5, "Arbalète":15]
-    init () {
-        if let weapon = listOfWeapons.randomElement() {
-            self.name = weapon.key
-            self.damage = weapon.value
-        }
-        
-    }
-    func CreateWeapon() {
-        
+    init() {
+        let weapon = listOfWeapons.randomElement()
+        self.name = weapon!.key
+        self.damage = weapon!.value
     }
 }
     
@@ -165,10 +169,7 @@ class Weapons {
 class Chest {
     var itemInChest: Weapons
     init(){
-        
-    }
-    func selectRandomItem() {
-        
+      itemInChest = Weapons()
     }
 }
 
@@ -177,3 +178,7 @@ class Chest {
 // MARK: Main
 //***************************************************************************
   
+var myGame=Game()
+
+var player = myGame.defineWhoStart()
+
