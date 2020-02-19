@@ -12,8 +12,8 @@ import Foundation
 //***  Class Enchanter
 //***
 //****************************************************************
-class Enchanter:Personages {
-    init() {
-        super.init()
+class Enchanter: Personages {
+   override init(life: Int, armor: Int, dexterity: Int) {
+        super.init(life: 50, armor: 10, dexterity: 50)
       }
 }

@@ -12,9 +12,8 @@ import Foundation
  //***  Class Warrior
  //***  
  //****************************************************************
-class Warrior:Personages {
-    init() {
-        super.init()
-        
+class Warrior: Personages {
+   override init(life: Int, armor: Int, dexterity: Int) {
+   super.init( life: 50, armor: 70, dexterity: 50)
       }
 }

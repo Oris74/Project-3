@@ -13,75 +13,123 @@ import Foundation
 //***  manage a team of 3 fighters
 //***************************************************************
 
-class Teams {
+class Teams: Player {
     var listOfCombatant: [Personages] = []
+    let allClass: [Personages] =  [Hunter(life: 50, armor: 30, dexterity: 50),
+                         Wizard(life: 50, armor: 10, dexterity: 70),
+      //                 Warrior(life: 50, armor: 70, dexterity: 50),
+      //                 Priest(life: 50, armor: 5, dexterity: 50),
+      //                 Enchanter(life: 50, armor: 10, dexterity: 50),
+      //                 Druid(life: 50, armor: 5, dexterity: 25),
+      //                 Barbarian(life: 50, armor: 60, dexterity: 20),
+      //                 Paladin(life: 50, armor: 80, dexterity: 50),
+      //                 Monk(life: 50, armor: 5, dexterity: 50),
+      //                 Thief(life: 50, armor: 25, dexterity: 70),
+      //                 Archer(life: 50, armor: 15, dexterity: 50),
+      //                 Ranger(life: 50, armor: 30, dexterity: 50),
+                         Knight(life: 50, armor: 90, dexterity: 30)]
     let nbOfCombatant = 3
-    init() {
-      }
+    var aliveInCrew: Int = 0
+    override init(name: String){
+        super.init(name: name)
+    }
+    func displayTeam(player: Player) {
+        print("\u{001B}[2J")                // ANSI sequence for cleaning  terminal screen
+        print("\n************************************************************************************")
+        print("***                              Joueur \(name)                                  ***")
+        print("************************************************************************************")
+        print("***                       Equipe constituée de \(listOfCombatant.count)  combattants              ******")
+        print("************************************************************************************")
+    for (index, fighter) in listOfCombatant.enumerated() {
+        let className = Utilities.getClassName(object: fighter)
+        //let fighterName = fighter.map({ (fighter: fighter) -> String in fighter.name})
+       //if let fighter = as?  aClassName: className){
+        print("\(index) - \(fighter) - \(className)")
+        }
+    }
    //********* function displayTeam  **************
 
-    func displayTeam(player: Player) {
+  func displayTeam() {
          print("\u{001B}[2J")                // ANSI sequence for cleaning  terminal screen
          print("\n************************************************************************************")
-         print("***                              Joueur \(player.name)                                  ***")
+         print("***                              Joueur \(name)                                  ***")
          print("************************************************************************************")
-         
-         print("***                       Equipe constituée de \(player.myTeam.listOfCombatant.count) combattants                  ******")
+         print("***                       Equipe constituée de \(listOfCombatant.count) combattants                  ******")
          print("************************************************************************************")
-        for (index,team) in player.myTeam.listOfCombatant.enumerated() {
-             print("\(index) - \(team.fighterSelected) dispose de \(String(team.currentLifePoints)) points de vie ! Arme utilisée : \(team.weaponUsed.name) => Dégat: \(team.weaponUsed.damage)")
-        }
-    }
-     
- //********* function teamSelection  **************
-    
-    static func selection()->Teams {
-        print("\u{001B}[2J")                // ANSI sequence for cleaning  terminal screen
-        print("*******************************************************")
-        print("Constituez votre équipe de 3 guerriers dans la liste suivante:")
-      
-        while listOfCombatant.count < nbOfCombatant {
-            var fighter = Personages(name: "", life: 0)
-            print("                 Guerrier \(listOfCombatant.count+1) / \(nbOfCombatant) ")
-            displayFighterList(listTeam: listOfCombatant)
-            if selectPersonage(fighter: &fighter) {
-                listOfCombatant.append(fighter)
+        for (index,fighter) in listOfCombatant.enumerated() {
+            switch fighter {
+            case let fighter as Hunter:
+                print("\(index) - \(fighter.displayStatus())")
+            case let fighter as Wizard:
+                 print("\(index) - \(fighter.displayStatus())")
+            case let fighter as Knight:
+                 print("\(index) - \(fighter.displayStatus())")
+      /*      case let fighter as Warrior:
+                 print ("\(index)- \(fighter.displayStatus())")
+            case let fighter as Priest:
+                 print ("\(index)- \(fighter.displayStatus())")
+            case let fighter as Enchanter:
+                 print ("\(index)- \(fighter.displayStatus())")
+             case let fighter as Druid:
+             print ("\(index)- \(fighter.displayStatus())")*/
+            default:
+                print("la classe de combattant \(fighter) n'est pas connue")
             }
         }
     }
-    
-     //********* function displayFighterList  **************
-    func displayFighterList(listTeam: [Combatant]) {
-        var alreadyRegisted: Bool
-        for (index,listOfFighter) in fighters.enumerated() {
-            alreadyRegisted = false
-            for fighter in listTeam {
-                if (fighter.fighterSelected.contains(listOfFighter.key)) {
-                    alreadyRegisted = true
-                }
-        }
-        if !alreadyRegisted {
-                print("\(index) - \(listOfFighter.key) dispose de \(listOfFighter.value) de vie")
-                
-            }
-        }
-    }
-    
-     //********* function selectCombatant  **************
-    func selectPersonage(fighter: inout Personages) {
-        print ("\nfaites votre choix: " )
-        if let indexFighter = readLine()  {
-             if let index = Int(indexFighter)  {
-                  if index < fighter.count {
-                     fighter.name = Array(fighter)[index].key
-                     fighter.maxLifePoints =  Array(fighters)[index].value
-                     fighter.lifePoints = fighter.maxLifePoints
-                     return true
-                    }
-                }
-            }
-     return false
-    }
-    
   
+    //********* function displayFighterList  **************
+    func displayClassList() {
+        for (index, fighter) in allClass.enumerated() {
+            print("\(index) - \(fighter.getClass())")
+         }
+    }
+    
+    func getFighter() -> Personages {
+        print("Choisissez un type de personnage : " )
+        if let entry = readLine()
+            , let fighterIndex = Int(entry)
+            , case 0...allClass.count-1 = fighterIndex {
+            return allClass[fighterIndex]
+        }
+        else {
+            print("Une erreur est survenue")
+            return self.getFighter()
+        }
+    }
+    
+    func makeSelection() {
+        print("\u{001B}[2J")                // ANSI sequence for cleaning  terminal screen
+        print("*****************************************************************")
+        print("\(name), constituez votre équipe de 3 guerriers dans la liste suivante:")
+       
+        while listOfCombatant.count < nbOfCombatant {
+            print("                 Guerrier \(listOfCombatant.count+1) / \(nbOfCombatant) ")
+            displayClassList()
+            let fighter = getFighter()
+            let name = Utilities.requestName(name: "Pour votre classe \(fighter.getClass()),")
+            if fighterNameIsOK(name: name) {
+                fighter.name = name
+                listOfCombatant.append(fighter)
+            } else {
+                print("le nom saisi existe déjà. Veuillez recommencer ")
+            }
+        }
+    }
+        
+    func fighterNameIsOK(name: String) -> Bool {
+        let listOfOpponent = opponent!.team.listOfCombatant
+        let list = listOfCombatant
+        for fighter in listOfOpponent.enumerated() {
+            if name == fighter.element.name {
+                return false
+            }
+        }
+        for fighter in list.enumerated() {
+            if name == (fighter.element).name {
+                return false
+            }
+        }
+   return true
+   }
 }

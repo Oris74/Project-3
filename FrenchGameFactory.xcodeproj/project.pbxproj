@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D998E29923F3ECCF00DC4762 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E29823F3ECCF00DC4762 /* utilities.swift */; };
+		D998E29923F3ECCF00DC4762 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E29823F3ECCF00DC4762 /* Utilities.swift */; };
 		D998E29D23F3EF0700DC4762 /* Personages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E29C23F3EF0700DC4762 /* Personages.swift */; };
 		D998E2A123F3FE3000DC4762 /* Chest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2A023F3FE3000DC4762 /* Chest.swift */; };
 		D998E2AC23F3FE4800DC4762 /* Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2A223F3FE4800DC4762 /* Weapons.swift */; };
@@ -20,7 +20,7 @@
 		D998E2B323F3FE4800DC4762 /* Hunter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2A923F3FE4800DC4762 /* Hunter.swift */; };
 		D998E2B423F3FE4800DC4762 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2AA23F3FE4800DC4762 /* Warrior.swift */; };
 		D998E2B523F3FE4800DC4762 /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2AB23F3FE4800DC4762 /* Knight.swift */; };
-		D998E2B923F4745D00DC4762 /* wizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2B823F4745D00DC4762 /* wizard.swift */; };
+		D998E2B923F4745D00DC4762 /* Wizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2B823F4745D00DC4762 /* Wizard.swift */; };
 		D9DCD78E23E9ED8300172BEA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCD78D23E9ED8300172BEA /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D998E29823F3ECCF00DC4762 /* utilities.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
+		D998E29823F3ECCF00DC4762 /* Utilities.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D998E29C23F3EF0700DC4762 /* Personages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personages.swift; sourceTree = "<group>"; };
 		D998E2A023F3FE3000DC4762 /* Chest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chest.swift; sourceTree = "<group>"; };
 		D998E2A223F3FE4800DC4762 /* Weapons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapons.swift; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		D998E2A923F3FE4800DC4762 /* Hunter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hunter.swift; sourceTree = "<group>"; };
 		D998E2AA23F3FE4800DC4762 /* Warrior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
 		D998E2AB23F3FE4800DC4762 /* Knight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
-		D998E2B823F4745D00DC4762 /* wizard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wizard.swift; sourceTree = "<group>"; };
+		D998E2B823F4745D00DC4762 /* Wizard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wizard.swift; sourceTree = "<group>"; };
 		D9DCD78A23E9ED8300172BEA /* FrenchGameFactory */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FrenchGameFactory; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9DCD78D23E9ED8300172BEA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,11 +89,11 @@
 				D998E2A023F3FE3000DC4762 /* Chest.swift */,
 				D998E2A923F3FE4800DC4762 /* Hunter.swift */,
 				D998E2A523F3FE4800DC4762 /* Player.swift */,
-				D998E2B823F4745D00DC4762 /* wizard.swift */,
+				D998E2B823F4745D00DC4762 /* Wizard.swift */,
 				D998E2A223F3FE4800DC4762 /* Weapons.swift */,
 				D998E2A623F3FE4800DC4762 /* Game.swift */,
 				D998E2AA23F3FE4800DC4762 /* Warrior.swift */,
-				D998E29823F3ECCF00DC4762 /* utilities.swift */,
+				D998E29823F3ECCF00DC4762 /* Utilities.swift */,
 				D998E29C23F3EF0700DC4762 /* Personages.swift */,
 				D998E2A723F3FE4800DC4762 /* Priest.swift */,
 				D998E2AB23F3FE4800DC4762 /* Knight.swift */,
@@ -114,6 +114,7 @@
 				D9DCD78623E9ED8300172BEA /* Sources */,
 				D9DCD78723E9ED8300172BEA /* Frameworks */,
 				D9DCD78823E9ED8300172BEA /* CopyFiles */,
+				D96DAB9A23FAD8100002FCAD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -157,13 +158,33 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D96DAB9A23FAD8100002FCAD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D9DCD78623E9ED8300172BEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D998E29D23F3EF0700DC4762 /* Personages.swift in Sources */,
-				D998E29923F3ECCF00DC4762 /* utilities.swift in Sources */,
+				D998E29923F3ECCF00DC4762 /* Utilities.swift in Sources */,
 				D998E2AD23F3FE4800DC4762 /* Enchanter.swift in Sources */,
 				D998E2AC23F3FE4800DC4762 /* Weapons.swift in Sources */,
 				D9DCD78E23E9ED8300172BEA /* main.swift in Sources */,
@@ -175,7 +196,7 @@
 				D998E2A123F3FE3000DC4762 /* Chest.swift in Sources */,
 				D998E2B523F3FE4800DC4762 /* Knight.swift in Sources */,
 				D998E2AF23F3FE4800DC4762 /* Player.swift in Sources */,
-				D998E2B923F4745D00DC4762 /* wizard.swift in Sources */,
+				D998E2B923F4745D00DC4762 /* Wizard.swift in Sources */,
 				D998E2B023F3FE4800DC4762 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

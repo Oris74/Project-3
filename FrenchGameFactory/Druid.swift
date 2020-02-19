@@ -12,10 +12,12 @@ import Foundation
 //***  Class Druid
 //***
 //****************************************************************
-class Druid:Personages {
-    var healerPoint: Int = 50
-    
-    init() {
-        super.init()
+class Druid: Personages {
+    var healing: Int = 50
+    var damage: Int {
+          return 4
+    }
+    override init(life: Int, armor: Int, dexterity: Int) {
+        super.init( life: 50, armor: 5, dexterity: 25)
     }
 }

@@ -12,13 +12,11 @@ import Foundation
     //***  Class Chest
     //***  manage when a chest is assigned to fighter and which weapon is inside
     //****************************************************************************
-    
 class Chest {
     var itemInChest: Weapons
-    init(){
-       itemInChest = Weapons()
+    init() {
+       itemInChest = Weapons(name: "", damage: 0)
     }
     func selectRandomItem() {
-        
     }
 }

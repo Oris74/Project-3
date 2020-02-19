@@ -13,9 +13,8 @@ import Foundation
 //***
 //****************************************************************
 
-class Priest:Personages {
-    init() {
-        super.init()
-        
+class Priest: Personages {
+  override init(life: Int, armor: Int, dexterity: Int) {
+        super.init( life: 50, armor: 5, dexterity: 50)
       }
 }

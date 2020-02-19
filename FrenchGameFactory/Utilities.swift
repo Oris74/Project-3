@@ -8,21 +8,37 @@
 
 import Foundation
 
-//****************************************************************
+ //****************************************************************
  //***  Class Utilities
  //***  define caracteristics of weapons affected to fighters
  //****************************************************************
 
 class Utilities {
-    static func requestName(typeOfName: String, number num: Int ) -> String {
-         print ("\(typeOfName) N° \(num) Saisisez un nom : " )
-         if let name = readLine()  {
-               return name
-          } else {
-               return ""
-         }
+    static func requestName(name: String) -> String {
+         print("\(name) Saisisez un nom : " )
+         if let getName = readLine()  {
+               return getName
+          }
+        return ""
     }
-    static func result(player1: Player, player2: Player) ->Bool{
-        return true
+    
+    class func getClassName(object: AnyObject)-> String {
+           return String(describing: type(of: object))
     }
+   
+  
+     /*        var alreadyRegisted: Bool
+        for (index,listOfFighter) in team.listOfCombatant.enumerated() {
+                alreadyRegisted = false
+                for fighter in listOfFighter {
+                    if (fighter  .name.contains(listOfFighter.name) {
+                        alreadyRegisted = true
+                    }
+            }
+            if !alreadyRegisted {
+                    print("\(index) - \(listOfFighter.key) dispose de \(listOfFighter.value) de vie")
+                    
+                }
+            }*/
+
 }
