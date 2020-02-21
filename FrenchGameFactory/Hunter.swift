@@ -13,9 +13,8 @@ import Foundation
 //***
 //****************************************************************
 class Hunter: Personages {
-    var damage: Int {
-          let globalDamage = (weapon.damage * dexterity * armor)/3
-          return globalDamage
+ override var damage: Int {
+        return (weapon.damage + (dexterity / 2))
        }
     let weapon: Weapons
     let weapons: [Weapons] =  [Weapons(name: "Hache", damage: 8),
@@ -35,11 +34,31 @@ class Hunter: Personages {
         }
         super.init(life: life, armor: armor, dexterity: dexterity)
     }
-    func displayStatus() -> String {
-              return "\(name) de classe \(getClass()) dispose de " +
-          "\(super.lifePoints) points de vie ! Arme utilisée : \(weapon.name) => Dégat: \(weapon.damage)."
-          }
+    override func displayStatus() -> String {
+        if super.dead {
+            return "\(name) de classe \(getClass()) DECEDE !"
+        } else {
+            return "\(name) de classe \(getClass()) Force: " +
+          "\(super.lifePoints) Arme : \(weapon.name) => Dégat: \(damage)."
+        }
+    }
+    override func attack(opponent: Personages) -> Bool {
+        opponent.lifePoints -= (damage - opponent.armor)
+        if opponent.lifePoints <= 0 {
+            opponent.lifePoints = 0
+            opponent.dead = true
+            return true
+        }
+        return false
+    }
     override func getClass() -> String {
         return "Hunter"
+    }
+    override func isHealer() -> Bool {
+        return false
+       }
+    override func healing(comrade: Personages) -> Bool {
+        print("malheureusement \(comrade.name) n'a pas le don de soigner")
+        return false
     }
 }

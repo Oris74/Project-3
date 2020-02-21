@@ -14,31 +14,20 @@ import Foundation
  //****************************************************************
 
 class Utilities {
-    static func requestName(name: String) -> String {
-         print("\(name) Saisisez un nom : " )
-         if let getName = readLine()  {
-               return getName
-          }
-        return ""
-    }
-    
-    class func getClassName(object: AnyObject)-> String {
-           return String(describing: type(of: object))
-    }
-   
-  
-     /*        var alreadyRegisted: Bool
-        for (index,listOfFighter) in team.listOfCombatant.enumerated() {
-                alreadyRegisted = false
-                for fighter in listOfFighter {
-                    if (fighter  .name.contains(listOfFighter.name) {
-                        alreadyRegisted = true
-                    }
+    static func requestEntry(description: String) -> String {
+        print("\(description)" )
+        if let entry = readLine() {
+            if entry == "" {
+                return requestEntry(description: description)
             }
-            if !alreadyRegisted {
-                    print("\(index) - \(listOfFighter.key) dispose de \(listOfFighter.value) de vie")
-                    
-                }
-            }*/
-
+        return entry
+        }
+        return requestEntry(description: description)
+    }
+    static func textJustifyCenter(text: String, stringLenght: Int) -> String {
+        let middleString: Int
+        middleString = (stringLenght-text.count) / 2
+        let remainder = (stringLenght-text.count)%2
+        return String(repeating: " ", count: middleString) + "\(text)" + String(repeating: " ", count: (middleString + remainder))
+    }
 }

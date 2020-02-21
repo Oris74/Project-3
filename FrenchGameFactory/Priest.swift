@@ -14,7 +14,27 @@ import Foundation
 //****************************************************************
 
 class Priest: Personages {
+     var healing: Int = 50
   override init(life: Int, armor: Int, dexterity: Int) {
         super.init( life: 50, armor: 5, dexterity: 50)
+      }
+  override func isHealer() -> Bool {
+        return true
+       }
+   override func healing(comrade: Personages) -> Bool {
+          let lifeNeeded = maxLifePoints-lifePoints
+          switch healing {
+          case 0:
+              print("Malheureusement, votre soigneur manque d'energie. Il doit se reposer")
+              return false
+          case healing where healing > lifeNeeded:
+              comrade.lifePoints = comrade.maxLifePoints
+              healing-=lifeNeeded
+          case healing where healing < lifeNeeded:
+              comrade.lifePoints += healing
+              healing = 0
+          default: break
+          }
+          return true
       }
 }

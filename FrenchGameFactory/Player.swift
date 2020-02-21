@@ -13,14 +13,10 @@ import Foundation
 //***  manage a player
 //***************************************************************
 
-class Player  {
+class Player {
     let name: String
-    let team: Teams
-    var opponent: Player? = nil
-    init(name: String) {
-        self.name = name
-        self.team = Teams()
-    }
-    static func attack(opponent: Personages) {
+    var opponent: Teams?
+    init(playerName: String) {
+        self.name = playerName
     }
 }

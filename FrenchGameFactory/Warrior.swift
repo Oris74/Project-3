@@ -16,4 +16,8 @@ class Warrior: Personages {
    override init(life: Int, armor: Int, dexterity: Int) {
    super.init( life: 50, armor: 70, dexterity: 50)
       }
+    override func healing(comrade: Personages) -> Bool {
+        print("malheureusement \(comrade.name) n'a pas le don de soigner")
+        return false
+    }
 }

@@ -9,51 +9,75 @@
 import Foundation
 
 class Game {
-    var playerTurn: Player?
-    let player1: Player
-    let player2: Player
+    var teamTurn: Teams?
+    let team1: Teams
+    let team2: Teams
     var nbOfTurn: Int = 0
     init() {
-        let player1Name = Utilities.requestName(name: "Joueur 1")
-        self.player1 = Teams(name: player1Name)
-        let player2Name = Utilities.requestName(name: "Joueur 2")
-        self.player2 = Teams(name: player2Name)
-        player1.opponent = player2
-        player2.opponent = player1
+        let player1Name = Utilities.requestEntry(description: "Joueur 1 - Veuillez saisir votre nom : ")
+        self.team1 = Teams(playerName: player1Name)
+        let player2Name = Utilities.requestEntry(description: "Joueur 2 - Veuillez saisir votre nom : ")
+        self.team2 = Teams(playerName: player2Name)
+        team1.opponent = team2
+        team2.opponent = team1
     }
      //********* function defineWhoStart()  **************
-    func defineWhoStart() -> Player {
+    func defineWhoStart() -> Teams {
         let randomPlayer = Int.random(in: 1...2)
         if randomPlayer == 1 {
-            print("\nLe joueur 1 est choisi pour demarrer la partie")
-            return player1
+            print("\nLe joueur \(team1.name) est choisi pour démarrer la partie")
+            return team1
             }
-        print("\nLe joueur 2 est choisi pour demarrer la partie")
-        return player2
+        print("\nLe joueur \(team2.name) est choisi pour demarrer la partie")
+        return team2
     }
 
      //************ function attack()  *******************
     func start() {
-        
-        player1.team.makeSelection()
-        //Teams.selection(player: player1, opponent: player2)
-        playerTurn = defineWhoStart()
-        nbOfTurn += 1
-        result()
+        team1.defineCrew()
+        team2.defineCrew()
+        teamTurn = defineWhoStart()
+        while team1.nbFighterAlive() > 0 && team2.nbFighterAlive() > 0 {
+            nbOfTurn += 1
+            teamTurn!.action(opponent: teamTurn!.opponent!)
+            changeTurn()
+        }
+        isWinner()
+        print("**** GameOver ****")
     }
-   
      /* func selectMyFighter() ->Personages {
           
       }
       func selectOpponent(in team:Teams) ->Personages {
         
       } */
-    func result() {
-        displayTeam(player: player1)
-        displayTeam(player: player2)
-
+    func changeTurn() {
+        if teamTurn === team1 {
+            teamTurn = team2
+        } else {
+            teamTurn = team1
+        }
+        print("************************************************************************")
+        print("***     c'est au tour du joueur \(teamTurn!.name) de jouer          ****")
+        print("************************************************************************")
     }
-    func displayTeam(player: Player) {
-        player.team.displayTeam(player: player)
+    func doWinner() {
+        print("")
     }
+    func isWinner() {
+        if team1.nbFighterAlive() == 0 {
+            displayWinner(team: team1)
+        } else {
+            displayWinner(team: team2)
+        }
+    }
+    func displayWinner(team: Teams) {
+        print("\u{001B}[2J")                // ANSI sequence for cleaning  terminal screen
+        print("\n************************************************************************************")
+        print("***                           le joueur \(team.name) est victorieux en                           ***")
+        print("************************************************************************************")
+        print("***                       Equipe constituée de \(team.listOfCombatant.count)  combattants                    ***")
+        print("************************************************************************************")
+        team.displayCrew(team: team)
+       }
 }

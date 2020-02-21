@@ -13,9 +13,8 @@ import Foundation
 //***
 //****************************************************************
 class Knight: Personages {
-    var damage: Int {
-            let globalDamage = (weapon.damage * dexterity / armor)
-            return globalDamage
+    override var damage: Int {
+        return (weapon.damage + (dexterity / 3))
     }
     let weapon: Weapons
     let weapons: [Weapons] =  [Weapons(name: "Sabre", damage: 10),
@@ -33,17 +32,31 @@ class Knight: Personages {
         }
         super.init(life: life, armor: armor, dexterity: dexterity)
     }
-    func displayStatus() -> String {
-            return "\(name) de classe \(getClass()) dispose de \(lifePoints) points de vie ! Arme utilisée : \(weapon.name) => Dégat: \(weapon.damage)"
+    override func displayStatus() -> String {
+        if super.dead {
+            return "\(super.name) de classe \(getClass()) DECEDE !"
+        } else {
+            return "\(super.name) de classe \(getClass()) Force: \(lifePoints) Arme: \(weapon.name) => Dégat: \(weapon.damage). Armure: \(armor)"
         }
-    func checkSameName(name: String) ->Bool {
-           if super.name == name {
-               return false
-           } else {
-               return true
-           }
-       }
+    }
+  override func attack(opponent: Personages) -> Bool {
+        opponent.lifePoints -= damage
+        if opponent.lifePoints <= 0 {
+            opponent.lifePoints = 0
+            opponent.dead = true
+            print("Victoire !! Votre adversaire est terrassé")
+            return true
+        }
+        return false
+    }
     override func getClass() -> String {
-         return "Knight"
-     }
+        return "Knight"
+    }
+    override func isHealer() -> Bool {
+        return false
+    }
+     override func healing(comrade: Personages) -> Bool {
+              print("Malheureusement, un chevalier ne peut soigner pesonne")
+        return false
+      }
 }
