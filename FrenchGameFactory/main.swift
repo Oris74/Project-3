@@ -13,5 +13,3 @@ import Foundation
 //***************************************************************************
 let myGame = Game()
 myGame.start()
-
-print("GameOver")

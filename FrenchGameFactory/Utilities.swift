@@ -14,6 +14,7 @@ import Foundation
  //****************************************************************
 
 class Utilities {
+    
     static func requestEntry(description: String) -> String {
         print("\(description)" )
         if let entry = readLine() {
@@ -24,10 +25,15 @@ class Utilities {
         }
         return requestEntry(description: description)
     }
+    
     static func textJustifyCenter(text: String, stringLenght: Int) -> String {
         let middleString: Int
         middleString = (stringLenght-text.count) / 2
         let remainder = (stringLenght-text.count)%2
         return String(repeating: " ", count: middleString) + "\(text)" + String(repeating: " ", count: (middleString + remainder))
+    }
+    
+    static func printLine(_ text: String) {
+        print("---"+Utilities.textJustifyCenter(text: text, stringLenght: 94)+"---")
     }
 }

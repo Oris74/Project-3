@@ -14,9 +14,7 @@ import Foundation
     //****************************************************************************
 class Chest {
     var itemInChest: Weapons
-    init() {
-       itemInChest = Weapons(name: "", damage: 0)
-    }
-    func selectRandomItem() {
+    init(weapons: Weapons) {
+        self.itemInChest = weapons
     }
 }

@@ -19,58 +19,79 @@ class Wizard: Personages {
         return    (weapon.damage + (dexterity/3))
        }
     let weapon: Weapons
-    let weapons: [Weapons] =  [Weapons(name: "Sabre", damage: 10),
-            Weapons(name: "Baton", damage: 1),
-            Weapons(name: "Dague", damage: 3),
-            Weapons(name: "Poignard", damage: 3),
-            Weapons(name: "Poison", damage: 15),
-            Weapons(name: "Sortilège", damage: 30),
-            Weapons(name: "Incantation", damage: 15)]
+    let weapons: [Weapons] =  [Weapons.sabre,
+                               Weapons.baton,
+                               Weapons.dague,
+                               Weapons.poignard,
+                               Weapons.poison,
+                               Weapons.sortilege,
+                               Weapons.incantation]
+
     override init(life: Int, armor: Int, dexterity: Int) {
         if let myWeapon = weapons.randomElement() {
-             self.weapon = myWeapon
-        } else {
-             self.weapon =  Weapons(name: "Baton", damage: 1)
-        }
-        super.init(life: life, armor: armor, dexterity: dexterity)
-    }
-    override func displayStatus() -> String {
-        if super.dead {
-            return "\(super.name) de classe \(getClass()) DECEDE !"
-        } else {
-            return "\(super.name) de classe \(getClass()) Force: \(lifePoints) Arme: \(weapon.name) => Dégat: \(weapon.damage). Armure: \(armor) Soins : \(healing)"
-        }
-    }    
-    override func attack(opponent: Personages) -> Bool {
-          opponent.lifePoints -= (damage - opponent.armor)
-          if opponent.lifePoints <= 0 {
-              opponent.lifePoints = 0
-              opponent.dead = true
-              print("Victoire !! Votre adversaire est terrassé")
-              return true
+            self.weapon = myWeapon
+          } else {
+              self.weapon = Weapons(name: "dague", damage: 3)
           }
-          return false
-      }
+          super.init(life: life, armor: armor, dexterity: dexterity)
+    }
+   override func copy() -> Personages {
+        let copy = Wizard(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
+        return copy
+    }
+   override func displayStatus() -> String {
+        if super.dead {
+            return "\(name) de classe \(getClass()) DECEDE !"
+        } else {
+            if chest != nil {
+                return "\(name) de classe \(getClass()) Force: " +
+                    "\(super.lifePoints) Arme : \(weapon.name) (\(weapon.damage)) Dégats infligés: \(super.damage). \u{001B}[0;35m Coffre Découvert !!"
+            } else {
+                return "\(name) de classe \(getClass()) Force: " +
+                "\(super.lifePoints) Arme : \(weapon.name) (\(weapon.damage)) Dégats infligés: \(super.damage) "
+            }
+              
+        }
+    }
+    override func attack(opponent: Personages) -> Bool {
+           opponent.lifePoints -= (damage - (damage/opponent.armor))
+           print("-=-"+Utilities.textJustifyCenter(text: "\(opponent.name) perd \((damage - (damage/opponent.armor)))", stringLenght: 94)+"-=-")
+           if opponent.lifePoints <= 0 {
+               opponent.lifePoints = 0
+               opponent.dead = true
+               return true
+           }
+           return false
+       }
     override func getClass() -> String {
         return "Wizard"
     }
     override func isHealer() -> Bool {
         return true
     }
-   override func healing(comrade: Personages) -> Bool {
+   override func healing(comrade: Personages)  {
         let lifeNeeded = maxLifePoints-lifePoints
+        print(String(repeating: "-=", count: 50))
         switch healing {
         case 0:
-            print("Malheureusement, votre soigneur manque d'energie. Il doit se reposer")
-            return false
+            print("-=-"+Utilities.textJustifyCenter(text: "Malheureusement, votre soigneur manque d'energie. Il doit se reposer", stringLenght: 94)+"-=-")
         case healing where healing > lifeNeeded:
             comrade.lifePoints = comrade.maxLifePoints
             healing-=lifeNeeded
+            print("-=-"+Utilities.textJustifyCenter(text: "\(comrade.name), beneficie de \(lifeNeeded) points de vie ", stringLenght: 94)+"-=-")
         case healing where healing < lifeNeeded:
             comrade.lifePoints += healing
+            print("-=-"+Utilities.textJustifyCenter(text: "\(comrade.name), beneficie de \(healing) points de vie ", stringLenght: 94)+"-=-")
             healing = 0
         default: break
         }
-        return true
+        print("-=-"+Utilities.textJustifyCenter(text: "\(name), dispose désormais de \(healing) points de guerisseur", stringLenght: 94)+"-=-")
+    }
+    override func getWeapon()-> Weapons {
+        if let myWeapon = weapons.randomElement() {
+           return myWeapon
+        } else {
+           return Weapons(name: "Baton", damage: 1)
+        }
     }
 }

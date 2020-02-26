@@ -17,33 +17,44 @@ class Hunter: Personages {
         return (weapon.damage + (dexterity / 2))
        }
     let weapon: Weapons
-    let weapons: [Weapons] =  [Weapons(name: "Hache", damage: 8),
-    Weapons(name: "Couteau", damage: 3),
-    Weapons(name: "Arc", damage: 12),
-    Weapons(name: "Katana", damage: 11),
-    Weapons(name: "Machette", damage: 8),
-    Weapons(name: "Dague", damage: 3),
-    Weapons(name: "Poignard", damage: 3),
-    Weapons(name: "Arbalète", damage: 10)]
+    let weapons: [Weapons] =  [Weapons.hache,
+                               Weapons.couteau,
+                               Weapons.arc,
+                               Weapons.katana,
+                               Weapons.machette,
+                               Weapons.dague,
+                               Weapons.poignard,
+                               Weapons.arbalete]
 
     override init(life: Int, armor: Int, dexterity: Int) {
-        if let weapon = weapons.randomElement() {
-             self.weapon = weapon
-        } else {
-             self.weapon =  Weapons(name: "Dague", damage: 3)
-        }
+         if let myWeapon = weapons.randomElement() {
+                   self.weapon = myWeapon
+               } else {
+                   self.weapon = Weapons(name: "gague", damage: 3)
+               }
         super.init(life: life, armor: armor, dexterity: dexterity)
+    }
+    override func copy() -> Personages {
+        let copy = Hunter(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
+        return copy
     }
     override func displayStatus() -> String {
         if super.dead {
             return "\(name) de classe \(getClass()) DECEDE !"
         } else {
-            return "\(name) de classe \(getClass()) Force: " +
-          "\(super.lifePoints) Arme : \(weapon.name) => Dégat: \(damage)."
+            if chest != nil {
+                return "\(name) de classe \(getClass()) Force: " +
+                    "\(super.lifePoints) Arme : \(weapon.name) (\(weapon.damage)) Dégats infligés: \(super.damage). \u{1F381} "
+            } else {
+                return "\(name) de classe \(getClass()) Force: " +
+                       "\(super.lifePoints) Arme : \(weapon.name) (\(weapon.damage)) Dégats infligés: \(super.damage) "
+            }
         }
     }
-    override func attack(opponent: Personages) -> Bool {
-        opponent.lifePoints -= (damage - opponent.armor)
+
+   override func attack(opponent: Personages) -> Bool {
+        opponent.lifePoints -= (damage - (damage/opponent.armor))
+        print("-=-"+Utilities.textJustifyCenter(text: "\(opponent.name) perd \((damage - (damage/opponent.armor))) points", stringLenght: 94)+"-=-")
         if opponent.lifePoints <= 0 {
             opponent.lifePoints = 0
             opponent.dead = true
@@ -51,14 +62,20 @@ class Hunter: Personages {
         }
         return false
     }
-    override func getClass() -> String {
+   override func getClass() -> String {
         return "Hunter"
     }
-    override func isHealer() -> Bool {
+   override func isHealer() -> Bool {
         return false
        }
-    override func healing(comrade: Personages) -> Bool {
+   override func healing(comrade: Personages) {
         print("malheureusement \(comrade.name) n'a pas le don de soigner")
-        return false
     }
+   override func getWeapon() -> Weapons {
+           if let myWeapon = weapons.randomElement() {
+              return myWeapon
+           } else {
+              return Weapons(name: "Baton", damage: 1)
+           }
+       }
 }
