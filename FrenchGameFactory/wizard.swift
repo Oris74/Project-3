@@ -8,90 +8,128 @@
 
 import Foundation
 
-//****************************************************************
-//***  Class Wizard
-//***
-//****************************************************************
-
 class Wizard: Personages {
+    override var damage: Int {  //Getter: global damage = weapon damage+ % of dexterity
+         return (weapon.damage + (weapon.damage * dexterity / 100))
+    }
     var healing: Int = 25
-    override var damage: Int {
-        return    (weapon.damage + (dexterity/3))
-       }
-    let weapon: Weapons
-    let weapons: [Weapons] =  [Weapons.sabre,
-                               Weapons.baton,
-                               Weapons.dague,
-                               Weapons.poignard,
+    var weapon: Weapons
+    let weapons: [Weapons] =  [Weapons.saber,
+                               Weapons.stick,
+                               Weapons.dagger,
+                               Weapons.poniard,
                                Weapons.poison,
-                               Weapons.sortilege,
+                               Weapons.spell,              //Specifics weapons
                                Weapons.incantation]
 
+    //*********************************************
     override init(life: Int, armor: Int, dexterity: Int) {
-        if let myWeapon = weapons.randomElement() {
+        if let myWeapon = weapons.randomElement() {       //weapon randomly selected from the list of the personage class
             self.weapon = myWeapon
           } else {
-              self.weapon = Weapons(name: "dague", damage: 3)
+            self.weapon = Weapons.stick
           }
           super.init(life: life, armor: armor, dexterity: dexterity)
     }
-   override func copy() -> Personages {
+
+    //********************************************
+    override func copy() -> Personages {                                    //allow a deep copy of instance
         let copy = Wizard(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
         return copy
     }
-   override func displayStatus() -> String {
-        if super.dead {
-            return "\(name) de classe \(getClass()) DECEDE !"
-        } else {
-            if chest != nil {
-                return "\(name) de classe \(getClass()) Force: " +
-                    "\(super.lifePoints) Arme : \(weapon.name) (\(weapon.damage)) Dégats infligés: \(super.damage). \u{001B}[0;35m Coffre Découvert !!"
+
+    //********************************************
+     override func displayStatus() -> String {
+            if super.dead {
+                return  "💀 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
+                        " \(Utilities.txtColumn(text: getClass(), size: 10)) ⚰️ !"
             } else {
-                return "\(name) de classe \(getClass()) Force: " +
-                "\(super.lifePoints) Arme : \(weapon.name) (\(weapon.damage)) Dégats infligés: \(super.damage) "
+               return "👺 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
+                   " \(Utilities.txtColumn(text: getClass(), size: 10))" +
+                   "\t💛: \(Utilities.txtColumn(text: String(lifePoints), size: 3))" +
+                   "\t💪: \(Utilities.txtColumn(text: String(damage), size: 3))" +
+                   "\t🛡: \(Utilities.txtColumn(text: String(armor), size: 3))" +
+                   "\t🗡: \(Utilities.txtColumn(text: weapon.name + "(\(weapon.damage))", size: 15)) " +
+                   "\t💉: \(Utilities.txtColumn(text: String(healing), size: 3))"
             }
-              
         }
-    }
+
+    //***********************************************
+    //*** function attack
+    //*** opponent: personages who receive the attack
+    //*** return Bool:  True => opponent killed
+    //**********************************************
     override func attack(opponent: Personages) -> Bool {
-           opponent.lifePoints -= (damage - (damage/opponent.armor))
-           print("-=-"+Utilities.textJustifyCenter(text: "\(opponent.name) perd \((damage - (damage/opponent.armor)))", stringLenght: 94)+"-=-")
-           if opponent.lifePoints <= 0 {
-               opponent.lifePoints = 0
-               opponent.dead = true
-               return true
-           }
-           return false
-       }
+        opponent.lifePoints -= (damage - (damage * opponent.armor/100))             //damage applied depends on the weapon used and the armor
+        if opponent.lifePoints > 0 {
+            Utilities.blockTxt(typeCar: "⚔️",
+                              blockTxt: ["\(opponent.name) perd \(damage - (damage * opponent.armor/100)) points",
+                              opponent.displayStatus()]
+            )
+            return false
+        }
+        opponent.lifePoints = 0
+        opponent.dead = true
+        return true
+    }
+
+    //*******************************************
     override func getClass() -> String {
         return "Wizard"
     }
+
+    //*******************************************
     override func isHealer() -> Bool {
-        return true
+        if healing > 0 {
+            return true
+        }
+        return false                                        // the caracter is not a healer anymore
     }
-   override func healing(comrade: Personages)  {
-        let lifeNeeded = maxLifePoints-lifePoints
-        print(String(repeating: "-=", count: 50))
+
+    //*******************************************
+    override func healing(comrade: Personages) {
+        let lifeNeeded = comrade.maxLifePoints-comrade.lifePoints
+
         switch healing {
-        case 0:
-            print("-=-"+Utilities.textJustifyCenter(text: "Malheureusement, votre soigneur manque d'energie. Il doit se reposer", stringLenght: 94)+"-=-")
         case healing where healing > lifeNeeded:
             comrade.lifePoints = comrade.maxLifePoints
             healing-=lifeNeeded
-            print("-=-"+Utilities.textJustifyCenter(text: "\(comrade.name), beneficie de \(lifeNeeded) points de vie ", stringLenght: 94)+"-=-")
-        case healing where healing < lifeNeeded:
+            Utilities.blockTxt(typeCar: "💉",
+                               blockTxt: ["\(comrade.name), bénéficie de \(lifeNeeded) points de vie supplémentaires",
+                                         "il reste à \(name), \(healing) points de guérison"]
+            )
+        case healing where healing <= lifeNeeded:
             comrade.lifePoints += healing
-            print("-=-"+Utilities.textJustifyCenter(text: "\(comrade.name), beneficie de \(healing) points de vie ", stringLenght: 94)+"-=-")
-            healing = 0
+            Utilities.blockTxt(typeCar: "💉",
+                               blockTxt: ["\(comrade.name), beneficie de \(healing) points de vie",
+                                "il reste à \(name), 0 points de guérison"]
+            )
+            healing = 0                                     // the caracter lose definitly his possibility to provide care
         default: break
         }
-        print("-=-"+Utilities.textJustifyCenter(text: "\(name), dispose désormais de \(healing) points de guerisseur", stringLenght: 94)+"-=-")
     }
-    override func getWeapon()-> Weapons {
+
+    //*******************************************
+    override func getWeapon() -> Weapons {                   // return randomly, a different weapon than the former one
         if let myWeapon = weapons.randomElement() {
-           return myWeapon
-        } else {
-           return Weapons(name: "Baton", damage: 1)
+            if myWeapon !== weapon {
+                return myWeapon
+            }
         }
+        return getWeapon()                                  // recursif function if the new weapon is the same
     }
+
+    //*******************************************
+    override func gotChest() {
+          let chest = getWeapon()
+          let oldWeapon = weapon
+          weapon = chest
+          Utilities.blockTxt(typeCar: "🎁",
+                             blockTxt: ["\(name) a découvert un coffre avec une nouvelle arme !!",
+                                        "votre \(oldWeapon.name) (\(oldWeapon.damage)) est remplacé" +
+                                        " par l'arme suivante :\(chest.name) (\(chest.damage))",
+                                       "Votre \(getClass()) infligera désormais \(damage) points de dégats"]
+           )
+      }
+
 }

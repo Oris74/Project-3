@@ -1,5 +1,5 @@
 //
-//  Hunter.swift
+//  Thief.swift
 //  FrenchGameFactory
 //
 //  Created by Laurent Debeaujon on 04/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Hunter: Personages {
+class Thief: Personages {
      override var damage: Int {  //Getter: global damage = weapon damage+ % of dexterity
           return (weapon.damage + (weapon.damage * dexterity / 100))
      }
@@ -34,30 +34,30 @@ class Hunter: Personages {
 
     //*************************************************
     override func copy() -> Personages {
-        let copy = Hunter(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
+        let copy = Thief(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
         return copy
     }
 
-      //*************************************************
-    override func displayStatus() -> String {
-        if super.dead {
-            return "💀 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
-                    " \(Utilities.txtColumn(text: getClass(), size: 10)) ⚰️ !"
-            } else {
-               return "👺 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
-                   " \(Utilities.txtColumn(text: getClass(), size: 10))" +
-                   "\t💛: \(Utilities.txtColumn(text: String(lifePoints), size: 3))" +
-                   "\t💪: \(Utilities.txtColumn(text: String(damage), size: 3))" +
-                   "\t🛡: \(Utilities.txtColumn(text: String(armor), size: 3))" +
-                   "\t🗡: \(Utilities.txtColumn(text: weapon.name + "(\(weapon.damage))", size: 15)) "
-            }
-        }
+        //*************************************************
+      override func displayStatus() -> String {
+          if super.dead {
+              return "💀 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
+                     " \(Utilities.txtColumn(text: getClass(), size: 10)) ⚰️ !"
+              } else {
+                 return "👺 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
+                     " \(Utilities.txtColumn(text: getClass(), size: 10))" +
+                     "\t💛: \(Utilities.txtColumn(text: String(lifePoints), size: 3))" +
+                     "\t💪: \(Utilities.txtColumn(text: String(damage), size: 3))" +
+                     "\t🛡: \(Utilities.txtColumn(text: String(armor), size: 3))" +
+                     "\t🗡: \(Utilities.txtColumn(text: weapon.name + "(\(weapon.damage))", size: 15)) "
+              }
+          }
 
-    //***********************************************
-    //*** function attack
-    //*** opponent: personages who receive the attack
-    //*** return Bool:  True => opponent killed
-    //**********************************************
+     //***********************************************
+     //*** function attack
+     //*** opponent: personages who receive the attack
+     //*** return Bool:  True => opponent killed
+     //**********************************************
     override func attack(opponent: Personages) -> Bool {
          let lostPoint = (damage - (damage * opponent.armor/100))
          opponent.lifePoints -= lostPoint
@@ -77,7 +77,7 @@ class Hunter: Personages {
 
     //************************************************
     override func getClass() -> String {
-        return "Hunter"
+        return "Thief"
     }
 
     //************************************************

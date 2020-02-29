@@ -8,11 +8,6 @@
 
 import Foundation
 
-//****************************************************************
-//***  Class Player
-//***  manage a player
-//***************************************************************
-
 class Player {
     let name: String
     var opponent: Teams?
