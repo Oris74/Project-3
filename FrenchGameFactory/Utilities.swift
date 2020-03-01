@@ -1,5 +1,5 @@
 //
-//  utilities.swift
+//  Utilities.swift
 //  FrenchGameFactory
 //
 //  Created by Laurent Debeaujon on 12/02/2020.
