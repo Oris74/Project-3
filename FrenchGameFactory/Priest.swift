@@ -42,18 +42,24 @@ class Priest: Personages {
      override func displayStatus() -> String {
             if super.dead {
                 return "💀 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
-                       " \(Utilities.txtColumn(text: getClass(), size: 10)) ⚰️ !"
+                       " \(Utilities.txtColumn(text: getClass(), size: 10))" +
+                       "\t💛: ⚰️ " +
+                       "\t💪: \(Utilities.txtColumn(text: String(damage), size: 3))" +
+                       "\t🛡: \(Utilities.txtColumn(text: String(armor), size: 3))" +
+                       "\t🎯: \(Utilities.txtColumn(text: String(dexterity), size: 3 ))" +
+                       "\t🗡: \(Utilities.txtColumn(text: weapon.name + "(\(weapon.damage))", size: 15)) " +
+                       "\t💊: \(Utilities.txtColumn(text: String(healing), size: 3))"
             } else {
                return "👺 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
                    " \(Utilities.txtColumn(text: getClass(), size: 10))" +
                    "\t💛: \(Utilities.txtColumn(text: String(lifePoints), size: 3))" +
                    "\t💪: \(Utilities.txtColumn(text: String(damage), size: 3))" +
                    "\t🛡: \(Utilities.txtColumn(text: String(armor), size: 3))" +
+                   "\t🎯: \(Utilities.txtColumn(text: String(dexterity), size: 3 ))" +
                    "\t🗡: \(Utilities.txtColumn(text: weapon.name + "(\(weapon.damage))", size: 15)) " +
-                   "\t💉: \(Utilities.txtColumn(text: String(healing), size: 3))"
+                   "\t💊: \(Utilities.txtColumn(text: String(healing), size: 3))"
             }
         }
-
     //***********************************************
     //*** function attack
     //*** opponent: personages who receive the attack
@@ -94,13 +100,13 @@ class Priest: Personages {
         case healing where healing > lifeNeeded:
             comrade.lifePoints = comrade.maxLifePoints
             healing-=lifeNeeded
-            Utilities.blockTxt(typeCar: "💉",
+            Utilities.blockTxt(typeCar: "💊",
                                blockTxt: ["\(comrade.name), bénéficie de \(lifeNeeded) points de vie supplémentaires",
                                          "il reste à \(name), \(healing) points de guérison"]
             )
         case healing where healing <= lifeNeeded:
             comrade.lifePoints += healing
-            Utilities.blockTxt(typeCar: "💉",
+            Utilities.blockTxt(typeCar: "💊",
                                blockTxt: ["\(comrade.name), beneficie de \(healing) points de vie",
                                 "il reste à \(name), 0 points de guérison"]
             )

@@ -45,7 +45,7 @@ import Foundation
         }
         print(String(repeating: typeCar, count: 50))
     }
-    
+
     //**************************************************
     //*** function txtColumn
     //*** text: text to format  size: length

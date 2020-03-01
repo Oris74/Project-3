@@ -41,7 +41,7 @@ class Game {
             nbOfTurn += 1
             changeTurn()                                        //define who play for the next round
         } while true
-        Utilities.blockTxt(typeCar: "🏆",
+        Utilities.blockTxt(typeCar: "--",
                            blockTxt: ["GameOver"]
         )
     }
@@ -85,9 +85,14 @@ class Game {
     func gotWinner() -> Bool {
         if team1.nbFighterAlive() == 0 {
             displayWinner(team: team2)
+            print(Utilities.textJustifyCenter(text:"🩸 EQUIPE PERDANTE 🩸", stringLength:100))
+            team1.displaySquad(team: team1)
             return true
+
         } else if team2.nbFighterAlive() == 0 {
             displayWinner(team: team1)
+            print(Utilities.textJustifyCenter(text:"🩸 EQUIPE PERDANTE 🩸", stringLength:100))
+            team2.displaySquad(team: team2)
             return true
         } else {
             return false
