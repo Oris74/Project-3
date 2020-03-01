@@ -12,10 +12,10 @@ class Teams: Player {
     var listOfCombatant: [Personages] = []
     let allClass: [Personages] =  [Hunter(life: 40, armor: 20, dexterity: 50),
                          Wizard(life: 40, armor: 10, dexterity: 70),
-                         Priest(life: 40, armor: 5, dexterity: 30),
                          Paladin(life: 40, armor: 30, dexterity: 50),
                          Enchanter(life: 40, armor: 5, dexterity: 60),
                          Thief(life: 40, armor: 10, dexterity: 70),
+                         Priest(life: 40, armor: 5, dexterity: 30),
                          Knight(life: 40, armor: 30, dexterity: 40)]
     let nbOfCombatant = 3
     var aliveInSquad = 0
