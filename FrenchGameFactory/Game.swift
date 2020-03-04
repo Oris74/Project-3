@@ -86,13 +86,13 @@ class Game {
         if team1.nbFighterAlive() == 0 {
             displayWinner(team: team2)
             print(Utilities.textJustifyCenter(text:"🩸 EQUIPE PERDANTE 🩸", stringLength:100))
-            team1.displaySquad(team: team1)
+            team1.displaySquad()
             return true
 
         } else if team2.nbFighterAlive() == 0 {
             displayWinner(team: team1)
             print(Utilities.textJustifyCenter(text:"🩸 EQUIPE PERDANTE 🩸", stringLength:100))
-            team2.displaySquad(team: team2)
+            team2.displaySquad()
             return true
         } else {
             return false
@@ -106,7 +106,7 @@ class Game {
                            "le gagnant est \(team.name) en \(nbOfTurn) manches",
                            "Il reste \(team.nbFighterAlive()) combattants"]
         )
-        team.displaySquad(team: team)
+        team.displaySquad()
     }
 
 }

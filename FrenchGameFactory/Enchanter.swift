@@ -133,7 +133,7 @@ class Enchanter: Personages {
            Utilities.blockTxt(typeCar: "🎁",
                               blockTxt: ["\(name) a découvert un coffre avec une nouvelle arme !!",
                                         "votre \(oldWeapon.name) (\(oldWeapon.damage)) est remplacé" +
-                                        "par l'arme suivante :\(chest.name) (\(chest.damage))",
+                                        " par l'arme suivante :\(chest.name) (\(chest.damage))",
                                         "Votre \(getClass()) infligera désormais \(damage) points de dégats"]
             )
        }

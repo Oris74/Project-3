@@ -10,13 +10,15 @@ import Foundation
 
 class Teams: Player {
     var listOfCombatant: [Personages] = []
-    let allClass: [Personages] =  [Hunter(life: 40, armor: 20, dexterity: 50),
-                         Wizard(life: 40, armor: 10, dexterity: 70),
-                         Paladin(life: 40, armor: 30, dexterity: 50),
-                         Enchanter(life: 40, armor: 5, dexterity: 60),
-                         Thief(life: 40, armor: 10, dexterity: 70),
-                         Priest(life: 40, armor: 5, dexterity: 30),
-                         Knight(life: 40, armor: 30, dexterity: 40)]
+    let allClass: [Personages] =  [
+        Hunter(life: 40, armor: 20, dexterity: 50),
+        Wizard(life: 40, armor: 10, dexterity: 70),
+        Paladin(life: 40, armor: 30, dexterity: 50),
+        Enchanter(life: 40, armor: 5, dexterity: 60),
+        Thief(life: 40, armor: 10, dexterity: 70),
+        Priest(life: 40, armor: 5, dexterity: 30),
+        Knight(life: 40, armor: 30, dexterity: 40)
+    ]
     let nbOfCombatant = 3
     var aliveInSquad = 0
     let teamColors: String
@@ -58,8 +60,8 @@ class Teams: Player {
                                       "Equipe constituée de \(nbFighterAlive()) combattants valides"]
         )
 
-        displaySquad(team: self)
-
+        //displaySquad(team: self)
+        displaySquad()
         let myFighter = getFighter(fromTheListOf: listOfCombatant, chestAttribution: true)
         var healerSkill = "N"
 
@@ -79,7 +81,7 @@ class Teams: Player {
                                  blockTxt: ["\(name), Choisissez dans votre équipe, le personnage qui sera soigné"]
               )
 
-              displaySquad(team: self)            //display our own team
+              displaySquad()            //display our own team
 
               let myComrade = getFighter(fromTheListOf: listOfCombatant, chestAttribution: false)
               myFighter.healing(comrade: myComrade)
@@ -89,7 +91,7 @@ class Teams: Player {
                                  blockTxt: ["\(name) Choisissez votre opposant"]
               )
 
-              displaySquad(team: opponent)        //display the opposing team
+              opponent.displaySquad()        //display the opposing team
 
               let myOpponent = getFighter(fromTheListOf: opponent.listOfCombatant, chestAttribution: false)
 
@@ -113,9 +115,9 @@ class Teams: Player {
          if let fighterIndex = Int(entry),
             case 0...list.count-1 = fighterIndex,
             !list[fighterIndex].dead {
-
+            let aDie = Int.random(in: 0...2)        //we launch a die
             if chestAttribution,
-                fighterIndex == Int.random(in: 0...5) {         //1 in 6 chance of having the gift
+                aDie == 0 {         //1 in 3 chance of having the gift
                 list[fighterIndex].gotChest()                   //change weapon belong to the choosen fighter
             }
             return list[fighterIndex]
@@ -126,8 +128,8 @@ class Teams: Player {
     }
 
     //******************************************************
-    func displaySquad(team: Teams) {
-        for (index, fighter) in team.listOfCombatant.enumerated() {
+    func displaySquad() {
+        for (index, fighter) in listOfCombatant.enumerated() {
             if fighter.dead {
                 print("  - \(fighter.displayStatus())")
             } else {
