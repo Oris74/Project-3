@@ -12,8 +12,8 @@ class Paladin: Personages {
     override var damage: Int {  //Getter: global damage = weapon damage+ % of dexterity
           return (weapon.damage + (weapon.damage * dexterity / 100))
      }
-      var weapon: Weapons
-      let weapons: [Weapons] =  [Weapons.sword,
+      private var weapon: Weapons
+      private let weapons: [Weapons] =  [Weapons.sword,
                                  Weapons.axe,
                                  Weapons.sword,
                                  Weapons.katana,

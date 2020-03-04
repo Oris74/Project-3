@@ -12,9 +12,9 @@ class Enchanter: Personages {
      override var damage: Int {  //Getter: global damage = weapon damage+ % of dexterity
           return (weapon.damage + (weapon.damage * dexterity / 100))
      }
-     var healing: Int = 30
-     var weapon: Weapons
-     let weapons: [Weapons] =  [Weapons.stick,
+     private var healing: Int = 30
+     private var weapon: Weapons
+     private let weapons: [Weapons] =  [Weapons.stick,
                                 Weapons.dagger,
                                 Weapons.poniard,
                                 Weapons.poison,
@@ -38,7 +38,7 @@ class Enchanter: Personages {
      }
 
      //********************************************
-      override func displayStatus() -> String {
+     override func displayStatus() -> String {
              if super.dead {
                  return "💀 \(Utilities.txtColumn(text: name, size: 10)) de classe" +
                         " \(Utilities.txtColumn(text: getClass(), size: 10))" +

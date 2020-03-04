@@ -12,8 +12,8 @@ class Thief: Personages {
      override var damage: Int {  //Getter: global damage = weapon damage+ % of dexterity
           return (weapon.damage + (weapon.damage * dexterity / 100))
      }
-    var weapon: Weapons
-    let weapons: [Weapons] =  [Weapons.axe,
+   private var weapon: Weapons
+   private let weapons: [Weapons] =  [Weapons.axe,
                                Weapons.knife,
                                Weapons.bow,
                                Weapons.katana,

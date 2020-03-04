@@ -9,8 +9,8 @@
 import Foundation
 
 class Teams: Player {
-    var listOfCombatant: [Personages] = []
-    let allClass: [Personages] =  [
+    private var listOfCombatant: [Personages] = []
+    private let allClass: [Personages] =  [
         Hunter(life: 40, armor: 20, dexterity: 50),
         Wizard(life: 40, armor: 10, dexterity: 70),
         Paladin(life: 40, armor: 30, dexterity: 50),
@@ -19,9 +19,9 @@ class Teams: Player {
         Priest(life: 40, armor: 5, dexterity: 30),
         Knight(life: 40, armor: 30, dexterity: 40)
     ]
-    let nbOfCombatant = 3
-    var aliveInSquad = 0
-    let teamColors: String
+    private let nbOfCombatant = 3
+    private var aliveInSquad = 0
+    private let teamColors: String
 
     init(teamColors: String, playerName: String) {
         self.teamColors = teamColors
@@ -29,7 +29,7 @@ class Teams: Player {
     }
 
     //*************************************************
-    func defineSquad() {
+   func defineSquad() {
         Utilities.blockTxt(typeCar: teamColors,
                         blockTxt: [name,
                         "Constituez votre équipe de 3 guerriers dans la liste suivante"]

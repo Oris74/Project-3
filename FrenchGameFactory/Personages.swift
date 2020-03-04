@@ -25,8 +25,8 @@ class Personages {
 
     //***********************************************
     init(life: Int, armor: Int, dexterity: Int) {
-        self.lifePoints = life
-        self.maxLifePoints = lifePoints
+        self.maxLifePoints = life
+        self.lifePoints =  maxLifePoints
         self.armor = armor
         self.dexterity = dexterity
     }

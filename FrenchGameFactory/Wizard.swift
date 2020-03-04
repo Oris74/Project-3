@@ -12,9 +12,9 @@ class Wizard: Personages {
     override var damage: Int {  //Getter: global damage = weapon damage+ % of dexterity
          return (weapon.damage + (weapon.damage * dexterity / 100))
     }
-    var healing: Int = 25
-    var weapon: Weapons
-    let weapons: [Weapons] =  [Weapons.saber,
+    private var healing: Int = 25
+    private var weapon: Weapons
+    private let weapons: [Weapons] =  [Weapons.saber,
                                Weapons.stick,
                                Weapons.dagger,
                                Weapons.poniard,

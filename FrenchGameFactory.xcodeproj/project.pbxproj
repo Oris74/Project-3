@@ -64,6 +64,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D98E32A924103BC30047D7EC /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		D9DCD78123E9ED8300172BEA = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +90,7 @@
 		D9DCD78C23E9ED8300172BEA /* FrenchGameFactory */ = {
 			isa = PBXGroup;
 			children = (
+				D98E32A924103BC30047D7EC /* New Group */,
 				D998E2A823F3FE4800DC4762 /* Teams.swift */,
 				D9DD6C4F240AD35000FDA9F9 /* Enchanter.swift */,
 				D998E2A923F3FE4800DC4762 /* Hunter.swift */,
