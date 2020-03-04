@@ -27,7 +27,7 @@ class Weapons {
     static let flail: Weapons = Weapons(name: "Fléau", damage: 10)
     static let crossbow: Weapons = Weapons(name: "Arbalète", damage: 25)
     static let poison: Weapons = Weapons(name: "Poison", damage: 15)
-    static let spell: Weapons = Weapons(name: "Sortilège", damage: 40)
+    static let spell: Weapons = Weapons(name: "Sortilège", damage: 25)
     static let incantation: Weapons = Weapons(name: "Incantation", damage: 15)
 
     let name: String
