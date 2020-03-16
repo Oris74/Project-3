@@ -10,31 +10,24 @@ import Foundation
 
 class Paladin: Personage {
 
-private let weapons: [Weapon] = [
-        Weapon.sword,
-        Weapon.axe,
-        Weapon.sword,
-        Weapon.katana,
-        Weapon.dagger,
-        Weapon.poniard,
-        Weapon.crossbow,
-        Weapon.mace
-    ]
-
       //*************************************************
-     init(life: Int, armor: Int, dexterity: Int) {
-        let weapon = Weapon.getWeapon(listWeapons: weapons)
-        super.init(life: life, armor: armor, dexterity: dexterity, weapon: weapon)
+    init() {
+        let armory: [Weapon] = [
+            Weapon.sword,
+            Weapon.axe,
+            Weapon.sword,
+            Weapon.katana,
+            Weapon.dagger,
+            Weapon.poniard,
+            Weapon.crossbow,
+            Weapon.mace
+        ]
+        super.init(life: 40, armor: 30, dexterity: 50, armory: armory)
      }
 
-    //********************************************
-     override func weaponsList() -> [Weapon] {
-        return weapons
-     }
-
-    //*************************************************
+     //*************************************************
      override func copy() -> Personage {
-        let copy = Paladin(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
+        let copy = Paladin()
         return copy
      }
 
@@ -64,17 +57,6 @@ private let weapons: [Weapon] = [
     //**********************************************
       override func getClass() -> String {
         return "Paladin"
-      }
-
-      //**********************************************
-      override func isHealer() -> Int {
-        return 0
-      }
-
-      //**********************************************
-      override func healing(comrade: Personage) -> Int {
-        print("⚠️ Malheureusement, un chevalier ne peut soigner pesonne")
-        return 0
       }
 
 }

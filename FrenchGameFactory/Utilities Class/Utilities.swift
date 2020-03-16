@@ -10,9 +10,14 @@ import Foundation
 
  class Utilities {
 
-    //**************************************************
+    //*******************************************************
+    //*** function requestEntry
+    //*** Manage alphanumeric entry
+    //*******************************************************
     static func requestEntry(description: String) -> String {
+
         print("\(description)" )                                    //Display the requested question
+
         if let entry = readLine() {
             if entry == "" {
                 return requestEntry(description: description)       //recursive function in case of blank entry
@@ -22,6 +27,24 @@ import Foundation
         return requestEntry(description: description)
     }
 
+    //*******************************************************
+    //*** function requestIntEntry
+    //*** Manage numeric entry according to a range of values
+    //*******************************************************
+    static func requestIntEntry(description: String, fromValue: Int, toValue: Int) -> Int {
+
+        print("\(description)" )              //Display the question
+
+        if let entry = readLine() {
+            if let intEntry = Int(entry),
+                intEntry >= fromValue,
+                intEntry <= toValue {
+                return intEntry
+            }
+        }
+        return requestIntEntry(description: description, fromValue: fromValue, toValue: toValue)
+       }
+
     //**************************************************
     //*** function textJustifyCenter
     //*** Center text on a line
@@ -30,6 +53,7 @@ import Foundation
         let middleString: Int
         middleString = (stringLength-text.count) / 2
         let remainder = (stringLength-text.count) % 2
+
         return String(repeating: " ", count: middleString) + "\(text)" +
                String(repeating: " ", count: (middleString + remainder))
     }

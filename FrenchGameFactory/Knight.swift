@@ -10,28 +10,23 @@ import Foundation
 
 class Knight: Personage {
 
-    private let weapons: [Weapon] =  [Weapon.saber,
-                               Weapon.axe,
-                               Weapon.sword,
-                               Weapon.katana,
-                               Weapon.dagger,
-                               Weapon.poniard,
-                               Weapon.crossbow]
-
     //*************************************************
-    init(life: Int, armor: Int, dexterity: Int) {
-        let weapon = Weapon.getWeapon(listWeapons: weapons)
-        super.init(life: life, armor: armor, dexterity: dexterity, weapon: weapon)
-    }
-
-    //********************************************
-    override func weaponsList() -> [Weapon] {
-        return weapons
+    init() {
+        let armory: [Weapon] =  [
+            Weapon.saber,
+            Weapon.axe,
+            Weapon.sword,
+            Weapon.katana,
+            Weapon.dagger,
+            Weapon.poniard,
+            Weapon.crossbow
+        ]
+        super.init(life: 40, armor: 30, dexterity: 40, armory: armory)
     }
 
     //*************************************************
     override func copy() -> Personage {
-        let copy = Knight(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
+        let copy = Knight()
         return copy
     }
 
@@ -61,17 +56,6 @@ class Knight: Personage {
     //**********************************************
     override func getClass() -> String {
         return "Knight"
-    }
-
-    //**********************************************
-    override func isHealer() -> Int {
-        return 0
-    }
-
-    //**********************************************
-    override func healing(comrade: Personage) -> Int {
-        print("⚠️ Malheureusement, un chevalier ne peut soigner pesonne")
-        return 0
     }
 
 }

@@ -10,6 +10,7 @@ import Foundation
 
 class Personage {
     var name: String = ""
+    let armory: [Weapon]
     var weapon: Weapon
     var lifePoints: Int
     let maxLifePoints: Int
@@ -24,32 +25,36 @@ class Personage {
     var dead: Bool = false
 
     static let allClass: [Personage] =  [
-             Hunter(life: 40, armor: 20, dexterity: 50),
-             Wizard(life: 40, armor: 10, dexterity: 70),
-             Paladin(life: 40, armor: 30, dexterity: 50),
-             Enchanter(life: 40, armor: 5, dexterity: 60),
-             Thief(life: 40, armor: 10, dexterity: 70),
-             Priest(life: 40, armor: 5, dexterity: 30),
-             Knight(life: 40, armor: 30, dexterity: 40)]
+        Hunter(),
+        Wizard(),
+        Paladin(),
+        Enchanter(),
+        Thief(),
+        Priest(),
+        Knight()
+    ]
 
     //***********************************************
-    init(life: Int, armor: Int, dexterity: Int, weapon: Weapon) {
+    init(life: Int, armor: Int, dexterity: Int, armory: [Weapon]) {
+
         self.maxLifePoints = life
         self.lifePoints =  maxLifePoints
         self.armor = armor
         self.dexterity = dexterity
-        self.weapon = weapon
+        self.armory = armory
+        self.weapon = Weapon.getWeapon(listWeapons: armory)
     }
 
     //***********************************************
     func copy() -> Personage {
-        let copy = Personage(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity, weapon: self.weapon)
+        let copy = Personage(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity, armory: self.armory)
         return copy
     }
 
      //********************************************
-    func weaponsList() -> [Weapon] {
-        return [Weapon.stick, Weapon.dagger]}
+    func fighterArmory() -> [Weapon] {
+        return armory
+    }
 
     //***********************************************
     func getClass() -> String {
@@ -75,15 +80,15 @@ class Personage {
     //*** opponent: Personage who receive the attack
     //*** return Bool:  True => opponent killed
     //**********************************************
-    func attack(opponent: Personage) -> Int {
-        var lostPoint = (damage - (damage * opponent.armor/100))
+    func attack(defender: Personage) -> Int {
+        var lostPoint = (damage - (damage * defender.armor/100))
 
-        if opponent.lifePoints > lostPoint {
-           opponent.lifePoints -= lostPoint
+        if defender.lifePoints > lostPoint {
+           defender.lifePoints -= lostPoint
         } else {
-            lostPoint = opponent.lifePoints
-            opponent.lifePoints = 0
-            opponent.dead = true
+            lostPoint = defender.lifePoints
+            defender.lifePoints = 0
+            defender.dead = true
         }
         return lostPoint
     }
@@ -95,27 +100,9 @@ class Personage {
 
     //***********************************************
     func healing(comrade: Personage) -> Int {
-        print("⚠️ malheureusement \(comrade.name) n'a pas le don de soigner")
+        print("⚠️ malheureusement \(self.getClass()) n'a pas le don de soigner")
         return 0
     }
-
-     //************************************************
-     //*** function GetFighter
-     //*** list : array of choosen fighter
-     //*** chestAttribut: enable or not a new weapon
-     //************************************************
-     static func getFighter(fromTheListOf list: [Personage]) -> Personage {
-          let entry = Utilities.requestEntry(description: "Choisissez un combattant :")
-
-          if let fighterIndex = Int(entry),
-             case 0...list.count-1 = fighterIndex,
-             !list[fighterIndex].dead {
-             return list[fighterIndex]
-         } else {
-             print("⚠️ Une erreur est survenue")
-             return self.getFighter(fromTheListOf: list)
-         }
-     }
 
     //*************************************************
       static func displayClassList() {

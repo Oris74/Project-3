@@ -9,21 +9,22 @@
 import Foundation
 
 class Player {
-     let name: String
-     let team: Team
-     let color: String
 
-    init(color: String, playerName: String) {
-        let playerName = Utilities.requestEntry(description: " \(color) \(playerName) - Veuillez saisir votre nom : ")
+    var name: String
+    let flag: String
+    var team: Team
+    var opposent: Player?
+    init(flag: String, playerName: String) {
         self.name = playerName
+        self.flag = flag
         self.team = Team()
-        self.color = color
     }
+
     //****************************************************
     func isLoser() -> Bool {
-        if team.nbFighterAlive() > 0 {
-            return false
-        }
+       if team.nbFighterAlive() > 0 {
+        return false
+         }
         return true
     }
 }

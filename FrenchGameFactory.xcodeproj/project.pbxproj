@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D926E705240BBB31002BBC56 /* Wizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926E704240BBB31002BBC56 /* Wizard.swift */; };
 		D926E709240BC56E002BBC56 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926E708240BC56E002BBC56 /* main.swift */; };
+		D95BC7412418D8FB00C1D2FC /* TeamBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BC7402418D8FB00C1D2FC /* TeamBuilder.swift */; };
+		D95BC7432418E16900C1D2FC /* TeamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BC7422418E16900C1D2FC /* TeamManager.swift */; };
+		D95BC745241D4B9E00C1D2FC /* PlayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BC744241D4B9E00C1D2FC /* PlayerBuilder.swift */; };
 		D998E29923F3ECCF00DC4762 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E29823F3ECCF00DC4762 /* Utilities.swift */; };
 		D998E29D23F3EF0700DC4762 /* Personage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E29C23F3EF0700DC4762 /* Personage.swift */; };
 		D998E2AC23F3FE4800DC4762 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2A223F3FE4800DC4762 /* Weapon.swift */; };
@@ -38,6 +41,9 @@
 /* Begin PBXFileReference section */
 		D926E704240BBB31002BBC56 /* Wizard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wizard.swift; sourceTree = "<group>"; };
 		D926E708240BC56E002BBC56 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D95BC7402418D8FB00C1D2FC /* TeamBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamBuilder.swift; path = FrenchGameFactory/TeamBuilder.swift; sourceTree = SOURCE_ROOT; };
+		D95BC7422418E16900C1D2FC /* TeamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamManager.swift; sourceTree = "<group>"; };
+		D95BC744241D4B9E00C1D2FC /* PlayerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBuilder.swift; sourceTree = "<group>"; };
 		D998E29823F3ECCF00DC4762 /* Utilities.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D998E29C23F3EF0700DC4762 /* Personage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personage.swift; sourceTree = "<group>"; };
 		D998E2A223F3FE4800DC4762 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
@@ -64,11 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D98E32AA2411404E0047D7EC /* unusedYet */ = {
+		D98E32AA2411404E0047D7EC /* Utilities Class */ = {
 			isa = PBXGroup;
 			children = (
+				D998E29823F3ECCF00DC4762 /* Utilities.swift */,
+				D95BC7402418D8FB00C1D2FC /* TeamBuilder.swift */,
+				D95BC7422418E16900C1D2FC /* TeamManager.swift */,
+				D95BC744241D4B9E00C1D2FC /* PlayerBuilder.swift */,
 			);
-			path = unusedYet;
+			path = "Utilities Class";
 			sourceTree = "<group>";
 		};
 		D98E32AD24115C770047D7EC /* Personages Class */ = {
@@ -105,12 +115,11 @@
 			isa = PBXGroup;
 			children = (
 				D98E32AD24115C770047D7EC /* Personages Class */,
-				D98E32AA2411404E0047D7EC /* unusedYet */,
+				D98E32AA2411404E0047D7EC /* Utilities Class */,
 				D998E2A823F3FE4800DC4762 /* Team.swift */,
 				D998E2A523F3FE4800DC4762 /* Player.swift */,
 				D998E2A223F3FE4800DC4762 /* Weapon.swift */,
 				D998E2A623F3FE4800DC4762 /* Game.swift */,
-				D998E29823F3ECCF00DC4762 /* Utilities.swift */,
 				D998E29C23F3EF0700DC4762 /* Personage.swift */,
 				D926E708240BC56E002BBC56 /* main.swift */,
 			);
@@ -197,9 +206,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D998E29D23F3EF0700DC4762 /* Personage.swift in Sources */,
+				D95BC7412418D8FB00C1D2FC /* TeamBuilder.swift in Sources */,
+				D95BC745241D4B9E00C1D2FC /* PlayerBuilder.swift in Sources */,
 				D926E709240BC56E002BBC56 /* main.swift in Sources */,
 				D998E29923F3ECCF00DC4762 /* Utilities.swift in Sources */,
 				D9DD6C50240AD35000FDA9F9 /* Enchanter.swift in Sources */,
+				D95BC7432418E16900C1D2FC /* TeamManager.swift in Sources */,
 				D998E2AD23F3FE4800DC4762 /* Thief.swift in Sources */,
 				D998E2AC23F3FE4800DC4762 /* Weapon.swift in Sources */,
 				D998E2B323F3FE4800DC4762 /* Hunter.swift in Sources */,

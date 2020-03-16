@@ -11,28 +11,22 @@ import Foundation
 class Enchanter: Personage {
      private var healing: Int = 30
 
-     private let weapons: [Weapon] =  [
-        Weapon.stick,
-        Weapon.dagger,
-        Weapon.poniard,
-        Weapon.poison,
-        Weapon.spell,              //Specifics weapons
-        Weapon.incantation
-    ]
-
      //*********************************************
-     init(life: Int, armor: Int, dexterity: Int) {
-            let weapon = Weapon.getWeapon(listWeapons: weapons)
-            super.init(life: life, armor: armor, dexterity: dexterity, weapon: weapon)
+     init() {
+        let armory: [Weapon] =  [
+            Weapon.stick,
+            Weapon.dagger,
+            Weapon.poniard,
+            Weapon.poison,
+            Weapon.spell,              //Specifics weapons
+            Weapon.incantation
+        ]
+        super.init(life: 40, armor: 5, dexterity: 60, armory: armory)
      }
 
-    //********************************************
-    override func weaponsList() -> [Weapon] {
-            return weapons
-        }
      //********************************************
     override func copy() -> Personage {                  //allow a deep copy of instance
-         let copy = Enchanter(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
+         let copy = Enchanter()
          return copy
      }
 
@@ -68,27 +62,31 @@ class Enchanter: Personage {
 
      //*******************************************
      override func isHealer() -> Int {
-       return healing                         // the caracter is not a healer anymore
+        return healing                         
      }
 
-     //*******************************************
-     override func healing(comrade: Personage) -> Int {
-            var lifeNeeded = comrade.maxLifePoints-comrade.lifePoints
+    //*******************************************
+    //*** function healing
+    //*** comrade : fighter who receive the care
+    //*** return the quantity of care points used
+    //*******************************************
+    override func healing(comrade: Personage) -> Int {
+        var lifeNeeded = comrade.maxLifePoints-comrade.lifePoints
 
-            switch healing {
+        switch healing {
 
-            case healing where healing > lifeNeeded:
-                comrade.lifePoints = comrade.maxLifePoints
-                healing-=lifeNeeded
-                return lifeNeeded
-
-            case healing where healing <= lifeNeeded:
-                comrade.lifePoints += healing
-                lifeNeeded = healing
-                healing = 0                   // the caracter lose definitly his possibility to provide care
-
-            default: break
-            }
+        case healing where healing > lifeNeeded:
+            comrade.lifePoints = comrade.maxLifePoints
+            healing-=lifeNeeded
             return lifeNeeded
+
+        case healing where healing <= lifeNeeded:
+            comrade.lifePoints += healing
+            lifeNeeded = healing
+            healing = 0                   // the caracter lose definitly his possibility to provide care
+
+        default: break
+        }
+        return lifeNeeded
     }
 }

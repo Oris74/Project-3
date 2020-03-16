@@ -11,30 +11,23 @@ import Foundation
 class Priest: Personage {
     private var healing: Int = 15
 
-    private let weapons: [Weapon] = [
-        Weapon.saber,
-        Weapon.stick,
-        Weapon.dagger,
-        Weapon.poniard,
-        Weapon.poison,
-        Weapon.spell,              //Specifics weapons
-        Weapon.incantation
-    ]
-
     //*********************************************
-    init(life: Int, armor: Int, dexterity: Int) {
-        let weapon = Weapon.getWeapon(listWeapons: weapons)
-        super.init(life: life, armor: armor, dexterity: dexterity, weapon: weapon)
+    init() {
+        let armory: [Weapon] = [
+            Weapon.saber,
+            Weapon.stick,
+            Weapon.dagger,
+            Weapon.poniard,
+            Weapon.poison,
+            Weapon.spell,              //Specifics weapons
+            Weapon.incantation
+        ]
+        super.init(life: 40, armor: 5, dexterity: 30, armory: armory)
     }
 
-    //********************************************
-    override func weaponsList() -> [Weapon] {
-        return weapons
-        }
-
-    //********************************************
+   //********************************************
     override func copy() -> Personage {                           //allow a deep copy of instance
-        let copy = Priest(life: self.lifePoints, armor: self.armor, dexterity: self.dexterity)
+        let copy = Priest()
         return copy
     }
 
@@ -70,9 +63,13 @@ class Priest: Personage {
 
     //*******************************************
     override func isHealer() -> Int {
-        return healing
+        return healing          //return the car points of the personage 
     }
 
+    //*******************************************
+    //*** function healing
+    //*** comrade : fighter who receive the care
+    //*** return the quantity of care points used
     //*******************************************
     override func healing(comrade: Personage) -> Int {
         var lifeNeeded = comrade.maxLifePoints-comrade.lifePoints

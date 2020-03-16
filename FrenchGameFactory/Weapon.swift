@@ -36,7 +36,7 @@ import Foundation
     //*******************************************
     static func getWeapon(listWeapons: [Weapon]) -> Weapon {
         if let myWeapon = listWeapons.randomElement() {
-                  return myWeapon
+            return myWeapon
         }
         return Weapon.stick
     }
@@ -47,7 +47,7 @@ import Foundation
          let aDie = Int.random(in: 0...2)        //we launch a die
          if aDie == 0 {         //1 in 3 chance of having the gift
              repeat {
-                let newWeapon = Weapon.getWeapon(listWeapons: fighter.weaponsList())
+                let newWeapon = Weapon.getWeapon(listWeapons: fighter.fighterArmory())
                 if oldWeapon !== newWeapon {
                     fighter.weapon = newWeapon
                     return true
@@ -56,4 +56,5 @@ import Foundation
          }
         return false
      }
+
 }
