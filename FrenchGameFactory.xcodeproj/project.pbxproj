@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		D926E705240BBB31002BBC56 /* Wizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926E704240BBB31002BBC56 /* Wizard.swift */; };
 		D926E709240BC56E002BBC56 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D926E708240BC56E002BBC56 /* main.swift */; };
-		D95BC7412418D8FB00C1D2FC /* TeamBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BC7402418D8FB00C1D2FC /* TeamBuilder.swift */; };
 		D95BC7432418E16900C1D2FC /* TeamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BC7422418E16900C1D2FC /* TeamManager.swift */; };
 		D95BC745241D4B9E00C1D2FC /* PlayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BC744241D4B9E00C1D2FC /* PlayerBuilder.swift */; };
+		D95BC747241F903000C1D2FC /* TeamBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BC746241F903000C1D2FC /* TeamBuilder.swift */; };
 		D998E29923F3ECCF00DC4762 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E29823F3ECCF00DC4762 /* Utilities.swift */; };
 		D998E29D23F3EF0700DC4762 /* Personage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E29C23F3EF0700DC4762 /* Personage.swift */; };
 		D998E2AC23F3FE4800DC4762 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E2A223F3FE4800DC4762 /* Weapon.swift */; };
@@ -41,9 +41,9 @@
 /* Begin PBXFileReference section */
 		D926E704240BBB31002BBC56 /* Wizard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wizard.swift; sourceTree = "<group>"; };
 		D926E708240BC56E002BBC56 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		D95BC7402418D8FB00C1D2FC /* TeamBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamBuilder.swift; path = FrenchGameFactory/TeamBuilder.swift; sourceTree = SOURCE_ROOT; };
 		D95BC7422418E16900C1D2FC /* TeamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamManager.swift; sourceTree = "<group>"; };
 		D95BC744241D4B9E00C1D2FC /* PlayerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBuilder.swift; sourceTree = "<group>"; };
+		D95BC746241F903000C1D2FC /* TeamBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamBuilder.swift; path = FrenchGameFactory/TeamBuilder.swift; sourceTree = SOURCE_ROOT; };
 		D998E29823F3ECCF00DC4762 /* Utilities.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D998E29C23F3EF0700DC4762 /* Personage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personage.swift; sourceTree = "<group>"; };
 		D998E2A223F3FE4800DC4762 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
@@ -73,8 +73,8 @@
 		D98E32AA2411404E0047D7EC /* Utilities Class */ = {
 			isa = PBXGroup;
 			children = (
+				D95BC746241F903000C1D2FC /* TeamBuilder.swift */,
 				D998E29823F3ECCF00DC4762 /* Utilities.swift */,
-				D95BC7402418D8FB00C1D2FC /* TeamBuilder.swift */,
 				D95BC7422418E16900C1D2FC /* TeamManager.swift */,
 				D95BC744241D4B9E00C1D2FC /* PlayerBuilder.swift */,
 			);
@@ -206,7 +206,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D998E29D23F3EF0700DC4762 /* Personage.swift in Sources */,
-				D95BC7412418D8FB00C1D2FC /* TeamBuilder.swift in Sources */,
 				D95BC745241D4B9E00C1D2FC /* PlayerBuilder.swift in Sources */,
 				D926E709240BC56E002BBC56 /* main.swift in Sources */,
 				D998E29923F3ECCF00DC4762 /* Utilities.swift in Sources */,
@@ -217,6 +216,7 @@
 				D998E2B323F3FE4800DC4762 /* Hunter.swift in Sources */,
 				D998E2B423F3FE4800DC4762 /* Paladin.swift in Sources */,
 				D998E2B123F3FE4800DC4762 /* Priest.swift in Sources */,
+				D95BC747241F903000C1D2FC /* TeamBuilder.swift in Sources */,
 				D998E2B223F3FE4800DC4762 /* Team.swift in Sources */,
 				D926E705240BBB31002BBC56 /* Wizard.swift in Sources */,
 				D998E2B523F3FE4800DC4762 /* Knight.swift in Sources */,
