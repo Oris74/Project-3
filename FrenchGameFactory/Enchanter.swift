@@ -62,7 +62,7 @@ class Enchanter: Personage {
 
      //*******************************************
      override func isHealer() -> Int {
-        return healing                         
+        return healing
      }
 
     //*******************************************

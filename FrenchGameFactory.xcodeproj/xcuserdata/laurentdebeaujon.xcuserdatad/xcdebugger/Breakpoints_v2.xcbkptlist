@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "19DA3EAC-9B65-4C5C-B8BD-051263B4651D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FrenchGameFactory/Personage.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "Personage"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "19DA3EAC-9B65-4C5C-B8BD-051263B4651D - 66b37076302a32d"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FrenchGameFactory.Personage.attack(opponent: FrenchGameFactory.Personage) -&gt; Swift.Int"
-                  moduleName = "FrenchGameFactory"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/laurentdebeaujon/Documents/Fichiers/MonDepot/FrenchGameFactory/FrenchGameFactory/Personage.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "106">
-               </Location>
-               <Location
-                  uuid = "19DA3EAC-9B65-4C5C-B8BD-051263B4651D - 66b37076302a32d"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FrenchGameFactory.Personage.attack(opponent: FrenchGameFactory.Personage) -&gt; Swift.Int"
-                  moduleName = "FrenchGameFactory"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/laurentdebeaujon/Documents/Fichiers/MonDepot/FrenchGameFactory/FrenchGameFactory/Personage.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "186">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "91EF16DD-53F5-4E44-AB77-9D5FF3294E4C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -81,22 +33,6 @@
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "create(for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "61930F32-EDA2-495D-89BB-1B77E49E9F92"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FrenchGameFactory/Utilities Class/TeamManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "requestFighter(fromList:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

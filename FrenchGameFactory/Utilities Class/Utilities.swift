@@ -80,7 +80,7 @@ import Foundation
         if size < stringLength {
             return String(text.prefix(size))        //truncate the text if too long
         } else {
-            return text+String(repeating: " ", count: size - stringLength)  // add space to get the size 
+            return text+String(repeating: " ", count: size - stringLength)  // add space to get the size
         }
     }
 }

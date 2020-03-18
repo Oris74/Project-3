@@ -11,13 +11,12 @@ import Foundation
 class Team {
     var combatants: [Personage] = []
 
-    init() {
-    }
-//******************************************************
+    //******************************************************
     func displaySquad() {
         for (index, fighter) in combatants.enumerated() {
             if fighter.dead {
                 print("  - \(fighter.displayStatus())")
+
             } else {
                 print("\(index) - \(fighter.displayStatus())")
             }

@@ -46,13 +46,13 @@ import Foundation
          let oldWeapon = fighter.weapon
          let aDie = Int.random(in: 0...2)        //we launch a die
          if aDie == 0 {         //1 in 3 chance of having the gift
-             repeat {
+            repeat {
                 let newWeapon = Weapon.getWeapon(listWeapons: fighter.fighterArmory())
                 if oldWeapon !== newWeapon {
                     fighter.weapon = newWeapon
                     return true
                 }
-             } while true
+            } while true
          }
         return false
      }

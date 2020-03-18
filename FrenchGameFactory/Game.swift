@@ -9,49 +9,46 @@
 import Foundation
 
 class Game {
-    var players: [Player] = []
-    var attacker: Player?
-    var defender: Player {
+    private var players: [Player]
+
+    private var attacker: Player
+    private var defender: Player {
         if attacker === players[0] {
             return  players[1]
         }
         return players[0]
     }
 
-    var nbOfTurn = 1
-   // var playerTurn = 0
+    private var nbOfTurn = 1
 
     init() {
-        self.players.append(
-            PlayerBuilder.requestPlayerName(flag: "📗", defaultName: "Joueur1")
-        )
-        self.players.append(
-            PlayerBuilder.requestPlayerName(flag: "📕", defaultName: "Joueur2")
-        )
-        players[0].opposent = players[1]
-        players[1].opposent = players[0]
-        self.attacker = defineWhoStart()
+        let allPlayers = [Game.requestPlayerName(flag: "📗", defaultName: "Joueur 1"),
+                          Game.requestPlayerName(flag: "📕", defaultName: "Joueur 2")
+        ]
+        self.players = allPlayers
+        self.attacker = Self.defineWhoStart(players: allPlayers)
     }
 
     //***************************************************
     func start() {
 
         // 3 lads choosen by players from class of Personages
-        TeamBuilder.create(for: &players[0])
-        TeamBuilder.create(for: &players[1])
+        let builder = TeamBuilder()
+        players[0].team.combatants = builder.create(for: players[0])
+        players[1].team.combatants = builder.create(for: players[1])
 
         Utilities.blockTxt(typeCar: "📣", blockTxt: [
             "LANCEMENT DE LA PARTIE",
-            "\(attacker!.name) / \(defender.name)"
+            "\(attacker.name) / \(defender.name)"
         ])
         Utilities.blockTxt(typeCar: "📣", blockTxt: [
-            "\(attacker!.flag) Le joueur " +
-            "\(attacker!.name) est choisi pour démarrer la partie",
+            "\(attacker.flag) Le joueur " +
+            "\(attacker.name) est choisi pour démarrer la partie",
             " Manche N° \(nbOfTurn)"
         ])
 
         while true {
-            launchRound(attacker: attacker!, defender: defender)
+            launchRound(attacker: attacker, defender: defender)
 
             if defender.isLoser() {
                 break
@@ -60,21 +57,21 @@ class Game {
             attacker = defender               //layers roles are change
             Utilities.blockTxt(typeCar: "🏁", blockTxt: [
                 " Manche N° \(nbOfTurn)",
-                "Au tour de \(attacker!.name) de jouer"
+                "Au tour de \(attacker.name) de jouer"
             ])
         }
-        displayStatistic(winner: attacker!, loser: defender)
+        displayStatistic(winner: attacker, loser: defender)
         Utilities.blockTxt(typeCar: "--", blockTxt: ["GameOver"])
     }
 
     //****************************************************
-    func defineWhoStart() -> Player {
+    private static func defineWhoStart(players: [Player]) -> Player {
         let randomPlayer = Int.random(in: 0...1)                 //we threw dies to know who start
         return players[randomPlayer]
        }
 
     //****************************************************
-    func displayStatistic(winner: Player, loser: Player) {
+    private func displayStatistic(winner: Player, loser: Player) {
         Utilities.blockTxt(typeCar: "🏆", blockTxt: [
             "PARTIE \(winner.name) / \(loser.name)",
             "le gagnant est \(winner.name) en \(nbOfTurn) manches",
@@ -87,7 +84,7 @@ class Game {
     }
 
     //**************************************************
-    func launchRound(attacker: Player, defender: Player) {
+    private func launchRound(attacker: Player, defender: Player) {
         Utilities.blockTxt(typeCar: "\(attacker.flag)", blockTxt: [
             "\(attacker.name) choisissez votre combattant.",
             "Equipe constituée de \(attacker.team.nbFighterAlive()) combattants valides"
@@ -95,7 +92,7 @@ class Game {
 
         attacker.team.displaySquad()
 
-        let myFighter = TeamManager.requestFighter(fromList: attacker.team.combatants)
+        let myFighter = TeamBuilder.requestFighter(fromList: attacker.team.combatants)
         manageGift(fighter: myFighter)
 
         var healerSkill = "N"
@@ -119,7 +116,7 @@ class Game {
 
             attacker.team.displaySquad()          //display our own team
 
-            let myComrade = TeamManager.requestFighter(fromList: attacker.team.combatants)
+            let myComrade = TeamBuilder.requestFighter(fromList: attacker.team.combatants)
 
             let healPoint = myFighter.healing(comrade: myComrade)
 
@@ -136,7 +133,7 @@ class Game {
 
             defender.team.displaySquad()        //display the opposing team
 
-            let myOpponent = TeamManager.requestFighter(fromList: defender.team.combatants)
+            let myOpponent = TeamBuilder.requestFighter(fromList: defender.team.combatants)
 
             let lostPoint = myFighter.attack(defender: myOpponent)
 
@@ -153,7 +150,7 @@ class Game {
         }
     }
 
-    func manageGift(fighter: Personage) {
+    private func manageGift(fighter: Personage) {
         let oldWeapon = fighter.weapon
         if fighter.weapon.findChest(fighter: fighter) {
 
@@ -166,5 +163,8 @@ class Game {
 
         }
     }
-
+    private static func requestPlayerName(flag: String, defaultName: String) -> Player {
+           let name = Utilities.requestEntry(description: " \(flag) \(defaultName) - Veuillez saisir votre nom : ")
+           return Player(flag: flag, playerName: name)
+         }
 }

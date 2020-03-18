@@ -10,10 +10,10 @@ import Foundation
 
 class Player {
 
-    var name: String
+    let name: String
     let flag: String
-    var team: Team
-    var opposent: Player?
+    let team: Team
+
     init(flag: String, playerName: String) {
         self.name = playerName
         self.flag = flag
